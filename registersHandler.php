@@ -1,22 +1,22 @@
 <?php
-include ('variables.php');
-include ('classes/registers.php');
+require ('classes/registers.php');
+$registers = new Registers();
 
-$registers = new Registers($registersArray);
 switch ($_POST['functionname']) {
-	case 'getCountries':
-		$array = $registers->getData();
-		$data = $array['countries'];
+	case 'countries':
+		$data = $registers->getCountries();
 		break;
-	case 'getRegions':
+	case 'regions':
 		$data = $registers->getRegions($_POST['id']);
 		break;
-	case 'getCities':
+	case 'cities':
 		$data = $registers->getCities($_POST['id']);
 		break;
-	case 'getCityInfo':
+	case 'cityInfo':
 		$data = $registers->getCityInfo($_POST['id']);
 		break;
+	default:
+		$data = [];
 }
 
 echo json_encode($data);

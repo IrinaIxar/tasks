@@ -1,0 +1,46 @@
+<div class='row'>
+	<div class ='col'>
+		<p>Countries</p>
+		<select class="form-control form-control-sm" id='countries' data-children='regions'></select>
+	</div>
+
+	<div class ='col'>
+		<p>Regions</p>
+		<select class="form-control form-control-sm" id='regions' data-children='cities'></select>
+	</div>
+
+	<div class ='col'>
+		<p>Cities</p>
+		<select class="form-control form-control-sm" id='cities' data-children='cityInfo'></select>
+	</div>
+</div>
+<div class='row d-none' id='cityInfo'>
+	<div class='row w-100'>
+		<div class='col-2'>
+			<h5>Area:</h5>
+		</div>
+		<div class='col' id='area'></div>
+	</div>
+	<div class='row w-100'>
+		<div class='col-2'>
+			<h5>Population:</h5>
+		</div>
+		<div class='col' id='population'></div>
+	</div>
+	<div class='row w-100'>
+		<div class='col-2'>
+			<h5>History:</h5>
+		</div>
+		<div class='col' id='history'></div>
+	</div>
+</div>
+
+<script>		
+	$('select').change(function(){
+		parent = $(this).attr('id');
+		onSelectObject(parent);
+	});
+	$(document).ready(onSelectObject());
+</script>
+
+
