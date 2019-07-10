@@ -1,37 +1,107 @@
 <div>
 	<div class='row'>
-		<div class='row w-100'>
-			<input class='w-25' type="number" name="numberValue" value='Click to show'>
+		<div class='w-25'>
+			<form id='parameters'>
+				<label>Enter parameters for input</label>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="allowMinus" checked>
+					<label class="custom-control-label" for="allowMinus">Allows minus</label>
+				</div>
+				<div class="input-group margin-bottom-10">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Min value</span>
+					</div>
+					<input type="text" class="form-control parameters" value='-5' id="minValue" name='minValue'>
+				</div>
+				<div class="input-group margin-bottom-10">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Max value</span>
+					</div>
+					<input type="text" class="form-control parameters" value='5' id="maxValue" name='maxValue'>
+				</div>
+				<button id='saveParameters' type="button" class="btn btn-success w-100" disabled>Save</button>
+			</form>
 		</div>
-		<div class="row w-100">
-			<table class="table table-borderless w-25">
-				<tbody>
-					<tr>
-						<td><button>7</button></td>
-						<td><button>8</button></td>
-						<td><button>9</button></td>
-						<td><button>Del</button></td>
-					</tr>
-					<tr>
-						<td><button>4</button></td>
-						<td><button>5</button></td>
-						<td><button>6</button></td>
-						<td><button>Clear</button></td>
-					</tr>
-					<tr>
-						<td><button>1</button></td>
-						<td><button>2</button></td>
-						<td><button>3</button></td>
-						<td><button>Clean</button></td>
-					</tr>
-					<tr>
-						<td><button>+/-</button></td>
-						<td><button>0</button></td>
-						<td><button>,</button></td>
-						<td><button>Done</button></td>
-					</tr>
-				</tbody>
-			</table>
+		<div class='w-75 padding-left-30'>
+			<div class='w-100'>
+				<input class='w-25 form-control' id='dropdownInput' min='-5' max='5' allowMinus='on' placeholder='Click to show'>
+			</div>
+			<div class="w-100">
+				<table class="table table-sm table-borderless w-25 table-number">
+					<tbody>
+						<tr>
+							<td><button type="button" class="btn btn-warning">7</button></td>
+							<td><button type="button" class="btn btn-warning">8</button></td>
+							<td><button type="button" class="btn btn-warning">9</button></td>
+							<td><button type="button" class="btn btn-light">Del</button></td>
+						</tr>
+						<tr>
+							<td><button type="button" class="btn btn-warning">4</button></td>
+							<td><button type="button" class="btn btn-warning">5</button></td>
+							<td><button type="button" class="btn btn-warning">6</button></td>
+							<td><button type="button" class="btn btn-light">Clear</button></td>
+						</tr>
+						<tr>
+							<td><button type="button" class="btn btn-warning">1</button></td>
+							<td><button type="button" class="btn btn-warning">2</button></td>
+							<td><button type="button" class="btn btn-warning">3</button></td>
+							<td><button type="button" class="btn btn-light">Clean</button></td>
+						</tr>
+						<tr>
+							<td><button type="button" class="btn btn-light">+/-</button></td>
+							<td><button type="button" class="btn btn-warning">0</button></td>
+							<td><button type="button" class="btn btn-light">,</button></td>
+							<td><button type="button" class="btn btn-info">Done</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
+<script>
+	//allows to enter only float numbers
+	// $(".parameters").on("keydown keyup blur",function (event) {
+	// 	var dotArray = $(this).val().match(/\./g);	
+	// 	if ((event.which == 190 || event.which == 110) && ($(this).val().indexOf('.') == 0 || dotArray.length > 1)){
+	// 		console.log('it is ok');
+	// 	}	
+	// 	if(((event.which < 48 || event.which > 57) && event.which != 190 && event.which != 110) ||
+	// 		((event.which == 190 || event.which == 110) && ($(this).val().indexOf('.') == 0 || dotArray.length > 1))||
+	// 		((event.which == 189 || event.which == 109) && $(this).val().indexOf('-') != 0)){
+	// 		event.preventDefault();
+	// 	}
+	// });
+
+	// jQuery.validator.setDefaults({
+	// 	debug: true,
+	// 	success: "valid"
+	// });
+	$( "#parameters" ).validate({
+		rules: {
+			minValue: {
+				required: true,
+				number: true
+			},
+			maxValue: {
+				required: true,
+				number: true
+			}
+		},
+		messages: {
+			required: "Required input"
+			// minlength: jQuery.validator.format("Please, at least {0} characters are necessary")
+		},
+		submitHandler: $('#saveParameters').removeAttr('disabled')
+	});
+
+	$( "#allowMinus" ).on('change', function() {
+		$('#saveParameters').removeAttr('disabled');
+	})
+
+	$("#saveParameters").on('click', function(e){
+		e.preventDefault()
+		validateValues()
+		onSaveParameters()
+	})
+</script>

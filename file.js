@@ -43,3 +43,16 @@ function onSelectObject(parent='') {
 		}
 	});
 }
+
+function validateValues(){
+	
+}
+
+function onSaveParameters(){
+	//disable Save button
+	$('#saveParameters').attr('disabled', 'disabled');
+	//save changes in list of attributes of input
+	$("#dropdownInput").attr('min', $("#minValue").val());
+	$("#dropdownInput").attr('max', $("#maxValue").val());
+	$("#dropdownInput").attr('allowMinus', $("#allowMinus").prop('checked'));
+}
