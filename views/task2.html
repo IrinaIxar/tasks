@@ -60,23 +60,6 @@
 	</div>
 </div>
 <script>
-	//allows to enter only float numbers
-	// $(".parameters").on("keydown keyup blur",function (event) {
-	// 	var dotArray = $(this).val().match(/\./g);	
-	// 	if ((event.which == 190 || event.which == 110) && ($(this).val().indexOf('.') == 0 || dotArray.length > 1)){
-	// 		console.log('it is ok');
-	// 	}	
-	// 	if(((event.which < 48 || event.which > 57) && event.which != 190 && event.which != 110) ||
-	// 		((event.which == 190 || event.which == 110) && ($(this).val().indexOf('.') == 0 || dotArray.length > 1))||
-	// 		((event.which == 189 || event.which == 109) && $(this).val().indexOf('-') != 0)){
-	// 		event.preventDefault();
-	// 	}
-	// });
-
-	// jQuery.validator.setDefaults({
-	// 	debug: true,
-	// 	success: "valid"
-	// });
 	$( "#parameters" ).validate({
 		rules: {
 			minValue: {
@@ -89,8 +72,7 @@
 			}
 		},
 		messages: {
-			required: "Required input"
-			// minlength: jQuery.validator.format("Please, at least {0} characters are necessary")
+			
 		},
 		submitHandler: $('#saveParameters').removeAttr('disabled')
 	});
