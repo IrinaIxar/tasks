@@ -1,89 +1,29 @@
 <div>
 	<div class='row'>
 		<div class='w-25'>
-			<form id='parameters'>
+			<form id='parameters' name='parameters'>
 				<label>Enter parameters for input</label>
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" id="allowMinus" checked>
-					<label class="custom-control-label" for="allowMinus">Allows minus</label>
+				<div class='custom-control custom-checkbox'>
+					<input type='checkbox' class='custom-control-input' id='allowMinus' name='allowMinus' checked>
+					<label class='custom-control-label' for='allowMinus'>Allows minus</label>
 				</div>
-				<div class="input-group margin-bottom-10">
-					<div class="input-group-prepend">
-						<span class="input-group-text">Min value</span>
+				<div class='input-group margin-bottom-10'>
+					<div class='input-group-prepend'>
+						<span class='input-group-text'>Min value</span>
 					</div>
-					<input type="text" class="form-control parameters" value='-5' id="minValue" name='minValue'>
+					<input type='text' class='form-control' value='-578' id='minValue' name='minValue'>
 				</div>
-				<div class="input-group margin-bottom-10">
-					<div class="input-group-prepend">
-						<span class="input-group-text">Max value</span>
+				<div class='input-group margin-bottom-10'>
+					<div class='input-group-prepend'>
+						<span class='input-group-text'>Max value</span>
 					</div>
-					<input type="text" class="form-control parameters" value='5' id="maxValue" name='maxValue'>
+					<input type='text' class='form-control' value='578' id='maxValue' name='maxValue'>
 				</div>
-				<button id='saveParameters' type="button" class="btn btn-success w-100" disabled>Save</button>
+				<button id='saveParameters' type='button' class='btn btn-success w-100'>Save</button>
 			</form>
 		</div>
 		<div class='w-75 padding-left-30'>
-			<div class='w-100'>
-				<input class='w-25 form-control' id='dropdownInput' min='-5' max='5' allowMinus='on' placeholder='Click to show'>
-			</div>
-			<div class="w-100">
-				<table class="table table-sm table-borderless w-25 table-number">
-					<tbody>
-						<tr>
-							<td><button type="button" class="btn btn-warning">7</button></td>
-							<td><button type="button" class="btn btn-warning">8</button></td>
-							<td><button type="button" class="btn btn-warning">9</button></td>
-							<td><button type="button" class="btn btn-light">Del</button></td>
-						</tr>
-						<tr>
-							<td><button type="button" class="btn btn-warning">4</button></td>
-							<td><button type="button" class="btn btn-warning">5</button></td>
-							<td><button type="button" class="btn btn-warning">6</button></td>
-							<td><button type="button" class="btn btn-light">Clear</button></td>
-						</tr>
-						<tr>
-							<td><button type="button" class="btn btn-warning">1</button></td>
-							<td><button type="button" class="btn btn-warning">2</button></td>
-							<td><button type="button" class="btn btn-warning">3</button></td>
-							<td><button type="button" class="btn btn-light">Clean</button></td>
-						</tr>
-						<tr>
-							<td><button type="button" class="btn btn-light">+/-</button></td>
-							<td><button type="button" class="btn btn-warning">0</button></td>
-							<td><button type="button" class="btn btn-light">,</button></td>
-							<td><button type="button" class="btn btn-info">Done</button></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<input class='w-25 form-control' id='dropdownInput' min='-578' max='578' allowMinus='true' placeholder='Click to show'>
 		</div>
 	</div>
 </div>
-<script>
-	$( "#parameters" ).validate({
-		rules: {
-			minValue: {
-				required: true,
-				number: true
-			},
-			maxValue: {
-				required: true,
-				number: true
-			}
-		},
-		messages: {
-			
-		},
-		submitHandler: $('#saveParameters').removeAttr('disabled')
-	});
-
-	$( "#allowMinus" ).on('change', function() {
-		$('#saveParameters').removeAttr('disabled');
-	})
-
-	$("#saveParameters").on('click', function(e){
-		e.preventDefault()
-		validateValues()
-		onSaveParameters()
-	})
-</script>

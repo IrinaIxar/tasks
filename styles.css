@@ -2,10 +2,7 @@
 	margin-top: 20px;
 }
 
-.table-number td{
-	text-align: center;
-}
-
+/* task2 page */
 .margin-bottom-10{
 	margin-bottom: 10px;
 }
@@ -16,4 +13,43 @@
 
 label{
 	float: none;
+	width: 100%;
 } 
+
+/* custom styles for keyboard */
+.ui-keyboard-preview{
+	width: 100% !important;
+}
+
+.ui-widget-content{
+	background: #EEE;
+	color: #000;
+}
+
+.ui-keyboard-button{
+	background: none !important;
+	color: #000 !important;
+}
+
+[data-name = '1'], [data-name = '2'], [data-name = '3'],
+[data-name = '4'], [data-name = '5'], [data-name = '6'],
+[data-name = '7'], [data-name = '8'], [data-name = '9'],
+[data-name = '0'] { 
+	background-color:#ffc107 !important; 
+	border-color:#ffc107 !important; 
+	color: #FFF !important;
+}
+
+[data-name = 'del'], [data-name = 'bksp'], [data-name = 'clear'],
+[data-name = 'sign'], [data-name = '.'] { 
+	background-color:#f8f9fa !important; 
+	border-color:#f8f9fa !important; 
+	color: #212529 !important;
+}
+
+[data-name = 'accept'] { 
+	background-color:#17a2b8 !important; 
+	border-color:#17a2b8 !important; 
+	color: #FFF !important;
+}
+

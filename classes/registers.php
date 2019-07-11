@@ -5,7 +5,7 @@ class Registers {
 
 	function __construct($data=[]){
         //get data from json file
-		$string = file_get_contents("registers.json");
+		$string = file_get_contents('registers.json');
 		$this->data = json_decode($string, true);
 	}
 
