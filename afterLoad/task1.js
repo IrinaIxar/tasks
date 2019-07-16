@@ -1,27 +1,27 @@
 function setInfo(data){
-	$("#cityInfo").removeClass("d-none");
-	$("#area").html(data.area);
-	$("#population").html(data.population);
-	$("#history").html(data.history);
+	$('#cityInfo').removeClass('d-none');
+	$('#area').html(data.area);
+	$('#population').html(data.population);
+	$('#history').html(data.history);
 }
 function clearData(children){
-	$("#"+children).find('option').remove().end();
-	$("#area").html('');
-	$("#population").html('');
-	$("#history").html('');
-	$("#cityInfo").addClass("d-none");
+	$('#'+children).find('option').remove().end();
+	$('#area').html('');
+	$('#population').html('');
+	$('#history').html('');
+	$('#cityInfo').addClass('d-none');
 }
 function onSelectObject(parent='') {
 	var parentVal = 0;
 	if (parent) {
-		parentVal = $("#"+parent).val();
+		parentVal = $('#'+parent).val();
 		children = $('#'+parent).attr('data-children');
 	} else {
 		children = 'countries';
 	}
 
 	$.ajax({
-		type: "POST",
+		type: 'POST',
 		url: 'registersHandler.php',
 		dataType: 'json',
 		data: {functionname: children, id: parentVal},
@@ -44,8 +44,10 @@ function onSelectObject(parent='') {
 	});
 }
 
-$('select').change(function(){
-	parent = $(this).attr('id');
-	onSelectObject(parent);
-});
-$(document).ready(onSelectObject());
+$(document).ready(function(){
+	$('select').change(function(){
+		parent = $(this).attr('id');
+		onSelectObject(parent);
+	});
+	onSelectObject();
+})

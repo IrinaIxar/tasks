@@ -53,3 +53,15 @@ label{
 	color: #FFF !important;
 }
 
+.cursor-default {
+	cursor: default;
+}
+
+input.danger {
+	border-color: #dc3545;
+}
+input.danger:focus {
+	border-color: #dc3545;
+	box-shadow: 0 0 0 #dc3545;
+}
+

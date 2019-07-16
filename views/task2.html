@@ -22,8 +22,39 @@
 				<button id='saveParameters' type='button' class='btn btn-success w-100'>Save</button>
 			</form>
 		</div>
-		<div class='w-75 padding-left-30'>
-			<input class='w-25 form-control' id='dropdownInput' min='-578' max='578' allowMinus='true' placeholder='Click to show'>
+		<div class='w-75 padding-left-30 dropdown'>
+			<input type='hidden' name='savedMinValue' value='-578'>
+			<input type='hidden' name='savedMaxValue' value='578'>
+			<input type='hidden' name='savedAllowMinus' value='true'>
+			<input class='w-25 form-control' id='dropdownInput' placeholder='Click to show'>
+			<table class='table table-borderless table-sm w-25 text-center d-none'>
+				<tbody>
+					<tr>
+						<td><button type='button' class='btn btn-warning'>7</button></td>
+						<td><button type='button' class='btn btn-warning'>8</button></td>
+						<td><button type='button' class='btn btn-warning'>9</button></td>
+						<td><button type='button' class='btn btn-light' id='delete'>Del</button></td>
+					</tr>
+					<tr>
+						<td><button type='button' class='btn btn-warning'>4</button></td>
+						<td><button type='button' class='btn btn-warning'>5</button></td>
+						<td><button type='button' class='btn btn-warning'>6</button></td>
+						<td><button type='button' class='btn btn-light' id='clr'>Clear</button></td>
+					</tr>
+					<tr>
+						<td><button type='button' class='btn btn-warning'>1</button></td>
+						<td><button type='button' class='btn btn-warning'>2</button></td>
+						<td><button type='button' class='btn btn-warning'>3</button></td>
+						<td><button type='button' class='btn btn-light' id='cancel'>Cancel</button></td>
+					</tr>
+					<tr>
+						<td><button type='button' class='btn btn-light' id='sign'>+/-</button></td>
+						<td><button type='button' class='btn btn-warning'>0</button></td>
+						<td><button type='button' class='btn btn-light' id='dot'>.</button></td>
+						<td><button type='button' class='btn btn-info' id='done'>Done</button></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
