@@ -1,0 +1,40 @@
+<div>
+	<div class='row'>
+		<div class='w-25'>
+			<form id='arrays' name='arrays'>
+				<label>Enter 2 arrays</label>
+				<div class='input-group margin-bottom-10'>
+					<div class='input-group-prepend'>
+						<span class='input-group-text'>First array</span>
+					</div>
+					<input type='text' class='form-control' id='firstArray' value='2 3 j 5.3 0.2'>
+				</div>
+				<div class='input-group margin-bottom-10'>
+					<div class='input-group-prepend'>
+						<span class='input-group-text'>Second array</span>
+					</div>
+					<input type='text' class='form-control' id='secondArray' value='tt 66 2 7.8 9'>
+				</div>
+				<button id='sort' type='button' class='btn btn-success' disabled>Sort</button>
+			</form>
+		</div>
+		<div class='w-75 padding-left-30'>
+			<h5>Result</h5>
+			<form id='parameters' name='parameters'>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox" name="deleteDublicates" id="deleteDublicates">
+					<label class="form-check-label" for="deleteDublicates">Delete dublicates</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="sortParameter" value="ASC" checked>
+					<label class="form-check-label" for="ASC">ASC</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="sortParameter" value="DESC">
+					<label class="form-check-label" for="DESC">DESC</label>
+				</div>
+			</form>
+			<h5 class='result'></h5>
+		</div>
+	</div>
+</div>
