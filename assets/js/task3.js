@@ -1,74 +1,88 @@
-class Arrays {
-	constructor(sort, deleteDublicates, array1, array2) {
-		this.sort = sort;
-		this.deleteDublicates = deleteDublicates;
-
-		//removes all that isn't number
-		this.array1 = array1.split(' ').filter(Number);
-		this.array2 = array2.split(' ').filter(Number);
+class ArrayObject {
+	constructor(sort='ASC', deleteDublicates=false) {
+		this.sort = sort
+		this.deleteDublicates = deleteDublicates
+		this.items = []
 	}
 
-	parametersChange(sort, deleteDublicates) {
-		this.sort = sort;
-		this.deleteDublicates = deleteDublicates;
+	/**
+	 * Sets in items array string without all characters that are not number
+	 * @param {string} array
+	 * @return {array} items
+	 */
+	pushItem(array) {
+		this.items.push(array.split(' ').filter(Number))
 	}
 
-	arraysChange(array1, array2) {
-		this.array1 = array1.split(' ').filter(Number);
-		this.array2 = array2.split(' ').filter(Number);
-	}
-
-	sorting() {
-		//concat 2 arrays
-		var array = [...this.array1, ...this.array2];
-
-		//sorting array
-		if(this.sort == 'ASC') {
-			array.sort((a, b) => a - b);
-		} else {
-			array.sort((a, b) => b - a);
-		}
-
-		//if deleteDublicates is true
-		if(this.deleteDublicates) {
-			array = [...new Set(array)];
+	/**
+	 * Concat all arrays are setted in items
+	 * @return {array} array
+	 */
+	concat() {
+		let array=[]
+		for (let index=0; index < this.items.length; index++) {
+			array = [...array, ...this.items[index]]
 		}
 		return array
 	}
 
-	show() {
-		$('.result').html(this.sorting().join(' '))
+	/**
+	 * Delete dublicates in array
+	 * @param {array} array
+	 * @return {array} array
+	 */
+	removeDublicates(array) {
+		if(this.deleteDublicates) {
+			array = [...new Set(array)]
+		}
+		return array
+	}
+
+	/**
+	 * Sort array
+	 * @param {array} array
+	 * @return {array} sorted array 
+	 */
+	order(array) {
+		if(this.sort === 'ASC') {
+			array.sort((a, b) => a - b)
+		} else {
+			array.sort((a, b) => b - a)
+		}
+		return array
 	}
 }
 
 
 $(document).ready(function(){
-	const params = [
-		$('input[name="sortParameter"]:checked').val(),
-		$('#deleteDublicates').prop('checked'),
-		$('#firstArray').val(),
-		$('#secondArray').val()
-	];
-
 	//Array object initialization
-	var arrays = new Arrays(...params);
-	arrays.show();
+	let arrayObject = new ArrayObject()
+	arrayObject.pushItem($('#firstArray').val())
+	arrayObject.pushItem($('#secondArray').val())
+	let array = arrayObject.concat()
+	$('.result').html(arrayObject.order(array).join(' '))
 
 	//on change parameters
 	$('#parameters').change(() => {
-		arrays.parametersChange($('input[name="sortParameter"]:checked').val(), $('#deleteDublicates').prop('checked'));
-		arrays.show();
-	});
+		arrayObject.sort = $('input[name="sortParameter"]:checked').val()
+		arrayObject.deleteDublicates = $('#deleteDublicates').prop('checked')
+		array = arrayObject.concat()
+		array = arrayObject.removeDublicates(array)
+		$('.result').html(arrayObject.order(array).join(' '))
+	})
 
 	// on change input values
 	$('#arrays').on('keyup change paste', () => {
-		$('#sort').removeAttr('disabled');
+		$('#sort').removeAttr('disabled')
 	});
 
 	//on click button "Sort"
 	$('#sort').on('click', () => {
-		arrays.arraysChange($('#firstArray').val(), $('#secondArray').val());
-		arrays.show();
-		$('#sort').attr('disabled', 'disabled');
+		arrayObject.items = []
+		arrayObject.pushItem($('#firstArray').val())
+		arrayObject.pushItem($('#secondArray').val())
+		array = arrayObject.concat()
+		$('.result').html(arrayObject.order(array).join(' '))
+		$('#sort').attr('disabled', 'disabled')
 	})
 })
