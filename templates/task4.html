@@ -1,0 +1,85 @@
+<div class='row'>
+    <div class='row w-50'>
+        <form id='parameters'>
+            <div class='input-group margin-bottom-10'>
+                <div class='input-group-prepend'>
+                    <span class='input-group-text'>Allowed range</span>
+                </div>
+                <input class='form-control' name='range' type='text' value='5'>
+            </div>
+            <div class='input-group margin-bottom-10'>
+                <div class='input-group-prepend'>
+                    <span class='input-group-text'>Original sum</span>
+                </div>
+                <input class='form-control' name='sum' type='text' value='13505'>
+            </div>
+            <button id='saveParameters' type="button" class="btn btn-success" disabled>Save</button>
+        </form>  
+    </div>
+    <div class='row w-50'>
+        <div class='row w-100'>
+            <input type='hidden' id='range' value='5'>
+            <input class='form-control' type='text' id='sum' value='13503.00' readonly>
+        </div>
+        <div class='row w-100'>
+            <form id='calc' class='w-100'>
+                <table class='table table-bordered table-sm banknotes'>
+                    <tbody>
+                        <tr>
+                            <td class='text-right'>1000 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='1000'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum1000' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>500 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='500'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum500' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>200 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='200'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum200' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>100 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='100'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum100' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>50 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='50'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum50' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>20 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='20'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum20' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>10 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='10'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum10' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>5 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='5'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum5' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>2 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='2'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum2' readonly></td>
+                        </tr>
+                        <tr>
+                            <td class='text-right'>1 <b>x</b></td>
+                            <td><input class='form-control' type='text' placeholder='0' name='banknotesCount' id='1'></td>
+                            <td><input class='form-control' type='text' value='0' name='interimSum1' readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class='row w-100'><input class='form-control' type='text' name='currentSum' value='0.00' readonly></div>
+        <div class='row w-100 d-flex justify-content-center'><button type="button" class="btn btn-warning" id='cashIn' disabled>Cash in</button></div>
+    </div>
+</div>

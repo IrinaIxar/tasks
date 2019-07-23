@@ -6,7 +6,7 @@ class ArrayObject {
 	}
 
 	/**
-	 * Sets in items array string without all characters that are not number
+	 * Sets in items array string converted to array that contains only numbers
 	 * @param {string} array
 	 * @return {array} items
 	 */

@@ -32,3 +32,15 @@ input.danger:focus {
 	box-shadow: 0 0 0 #dc3545;
 }
 
+
+/* task4 page */
+.banknotes td{
+	vertical-align: middle!important;
+	input{
+		margin-bottom: 0px !important;
+	}
+}
+
+.banknotes input{
+	margin-bottom: 0px !important;
+}
