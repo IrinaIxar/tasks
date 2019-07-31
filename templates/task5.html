@@ -1,0 +1,75 @@
+<div class='row'>
+	<button type='button' id='create'>Create some persons</button>
+	<div id='addForm' class='w-100' style='display: none;'>
+		<form class='addForm'>
+			<div class='form-row'>
+				<div class='form-group col-md-9'>
+					<label for='name'>Name</label>
+					<input type='text' class='form-control' name='name' placeholder='Full Name'>
+				</div>
+				<div class='form-group col-md-3'>
+					<label for='age'>Age</label>
+					<input type='text' class='form-control' name='age' placeholder='Age (number value)'>
+				</div>
+			</div>
+			<div class='form-row'>
+				<div class='col-md-6'>
+					<div class='form-group margin-top-40'>
+						<label for='phoneNumber'>Phone number</label>
+						<input type='text' class='form-control' name='phoneNumber' placeholder='like.. +373 69000000'>
+					</div>
+					<div class='form-group margin-top-24'>
+						<label for='email'>Email</label>
+						<input type='email' class='form-control' name='email' placeholder='Email'>
+					</div>
+				</div>
+				<div class='col-md-6'>
+					<label><h5>Address</h5></label>
+					<div class='form-row'>
+						<div class='form-group col-md-6'>
+							<label for='country'>Country</label>
+							<input type='text' class='form-control' name='country' placeholder='Country'>
+						</div>
+						<div class='form-group col-md-6'>
+							<label for='city'>City</label>
+							<input type='text' class='form-control' name='city' placeholder='City'>
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-md-6'>
+							<label for='street'>Street</label>
+							<input type='text' class='form-control' name='street' placeholder='Street name'>
+						</div>
+						<div class='form-group col-md-3'>
+							<label for='houseNumber'>House number</label>
+							<input type='text' class='form-control' name='houseNumber' placeholder='House number'>
+						</div>
+						<div class='form-group col-md-3'>
+							<label for='apartmentNumber'>Apartment number</label>
+							<input type='text' class='form-control' name='apartmentNumber' placeholder='Apartment number'>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='text-right'>
+				<button type='submit' class='btn btn-success' id='add' disabled>Add</button>
+				<div id='errors' class='danger'></div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class='row margin-top-24' id='personList'>
+	<table id='personsList' class='table table-bordered w-100 d-none'>
+		<thead>
+			<tr>
+				<th id='name' abbr='asc'>Name <i class='fa fa-fw fa-sort'></i></th>
+				<th id='age' abbr='asc'>Age <i class='fa fa-fw fa-sort'></i></th>
+				<th id='address' abbr='asc'>Address <i class='fa fa-fw fa-sort'></i></th>
+				<th>Phone number</th>
+				<th>Email</th>
+			</tr>				
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+

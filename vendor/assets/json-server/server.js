@@ -6,11 +6,14 @@ const middlewares = jsonServer.defaults()
 
 router.render = function (req, res) {
 	var data = {}
+	let address = {}
 	result = res.locals.data
 	if(req.originalUrl.includes('/cities?id=')){
 		for (var i = 0; i <= (result.length-1); i++) {
 			data = {'area' : result[i].area, 'population' : result[i].population, 'history' : result[i].history};
 		}
+	} else if(req.originalUrl.includes('/persons')) {
+		data = result
 	} else {
 		for (var i = 0; i <= (result.length-1); i++) {
 			data[i] = {'id' : result[i].id, 'name' : result[i].name};
@@ -18,7 +21,6 @@ router.render = function (req, res) {
 	}
 	res.jsonp(data)
 }
-
 
 server.use(middlewares)
 server.use(router)

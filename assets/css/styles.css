@@ -44,3 +44,12 @@ input.danger:focus {
 .banknotes input{
 	margin-bottom: 0px !important;
 }
+
+/* task5 page */
+.margin-top-40{
+	margin-top: 40px;
+}
+
+.margin-top-24{
+	margin-top: 24px;
+}
