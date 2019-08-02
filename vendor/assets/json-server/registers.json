@@ -73,25 +73,12 @@
         "street": "Simeon Murafa",
         "houseNumber": "22"
       },
+      "position": "1",
       "name": "Irina Ixar",
       "age": "29",
       "phoneNumber": "+373 69447713",
       "email": "irina.ixar@gmail.com",
       "id": "-h6_SNG"
-    },
-    {
-      "address": {
-        "country": "MD",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Irina Ixar",
-      "age": "29",
-      "phoneNumber": "+373 69447713",
-      "email": "irina.ixar@gmail.com",
-      "id": "yEAJCJ4"
     },
     {
       "address": {
@@ -101,6 +88,7 @@
         "houseNumber": "16B",
         "apartmentNumber": "23"
       },
+      "position": "3",
       "name": "Olesea Isacov",
       "age": "28",
       "phoneNumber": "+373 69447712",
@@ -115,6 +103,7 @@
         "houseNumber": "22",
         "apartmentNumber": ""
       },
+      "position": "4",
       "name": "Lilia Samurenko",
       "age": "48",
       "phoneNumber": "+373 69221785",
@@ -129,151 +118,12 @@
         "houseNumber": "22",
         "apartmentNumber": "23"
       },
+      "position": "2",
       "name": "Ixar Ion",
       "age": "28",
       "phoneNumber": "373 60500661",
       "email": "ion.ixar@gmail.com",
       "id": "9IqweId"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": "23"
-      },
-      "name": "Ixar Ion",
-      "age": "28",
-      "phoneNumber": "373 60500661",
-      "email": "ion.ixar@gmail.com",
-      "id": "wUvf9Bo"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Ixar Ion",
-      "age": "28",
-      "phoneNumber": "373 60500661",
-      "email": "ion.ixar@gmail.com",
-      "id": "DE99sCg"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Ixar Ion",
-      "age": "28",
-      "phoneNumber": "373 60500661",
-      "email": "ion.ixar@gmail.com",
-      "id": "IyFPwli"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Ixar Ion",
-      "age": "28",
-      "phoneNumber": "373 60500661",
-      "email": "ion.ixar@gmail.com",
-      "id": "M7nlhWz"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Irina Ixar",
-      "age": "29",
-      "phoneNumber": "+373 69447713",
-      "email": "irina.ixar@gmail.com",
-      "id": "b1lTZ4A"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Lilia Samurenko",
-      "age": "48",
-      "phoneNumber": "+373 69221785",
-      "email": "",
-      "id": "hhx1s63"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Ixar Ion",
-      "age": "28",
-      "phoneNumber": "373 60500661",
-      "email": "ion.ixar@gmail.com",
-      "id": "hyLmeox"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Ixar Ion",
-      "age": "28",
-      "phoneNumber": "373 60500661",
-      "email": "irina.ixar@gmail.com",
-      "id": "dh13gVi"
-    },
-    {
-      "address": {
-        "country": "Moldova",
-        "city": "Chisinau",
-        "street": "Simeon Murafa",
-        "houseNumber": "22",
-        "apartmentNumber": ""
-      },
-      "name": "Ixar Ion",
-      "age": "28",
-      "phoneNumber": "373 60500661",
-      "email": "ion.ixar@gmail.com",
-      "id": "KVjH_GK"
-    },
-    {
-      "address": {
-        "country": "",
-        "city": "",
-        "street": "",
-        "houseNumber": "",
-        "apartmentNumber": ""
-      },
-      "name": "yyy",
-      "age": "99",
-      "phoneNumber": "",
-      "email": "",
-      "id": "kPLqZsJ"
     }
   ]
 }

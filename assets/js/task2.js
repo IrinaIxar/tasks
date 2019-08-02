@@ -1,23 +1,3 @@
-//validation for parameters form
-
-//rule to compare min and max values
-$.validator.addMethod(
-    'compare', 
-    function(value, element) {
-        return parseFloat($('#minValue').val()) < parseFloat($('#maxValue').val())
-    },
-    'Max value should be greater than min value'
-);
-
-//rule to check if allowMinus is checked, at least min value to be negative
-$.validator.addMethod(
-    'checkValue', 
-    function(value, element) {
-    	return parseFloat($('#minValue').val()) < 0
-    },
-    'At least min value should be negative'
-);
-
 //validation initialization 
 $( '#parameters' ).validate({
 	rules: {

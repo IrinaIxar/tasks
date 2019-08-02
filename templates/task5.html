@@ -1,13 +1,17 @@
-<div class='row'>
-	<button type='button' id='create'>Create some persons</button>
+<div class='row w-100'>
+	<button type='button' class='btn btn-success' id='create'>Create some persons</button>
 	<div id='addForm' class='w-100' style='display: none;'>
 		<form class='addForm'>
 			<div class='form-row'>
+				<div class='form-group col-md-1'>
+					<label for='position'>Position</label>
+					<select class='browser-default custom-select' name='position'></select>
+				</div>
 				<div class='form-group col-md-9'>
 					<label for='name'>Name</label>
 					<input type='text' class='form-control' name='name' placeholder='Full Name'>
 				</div>
-				<div class='form-group col-md-3'>
+				<div class='form-group col-md-2'>
 					<label for='age'>Age</label>
 					<input type='text' class='form-control' name='age' placeholder='Age (number value)'>
 				</div>
@@ -58,15 +62,64 @@
 		</form>
 	</div>
 </div>
-<div class='row margin-top-24' id='personList'>
+<div class='row w-100 margin-top-10'>
+	<button type='button' class='btn btn-danger' id='delete'>Delete some persons</button>
+	<div id='deleteForm' class='w-100 margin-top-10' style='display: none;'>
+		<form class='deleteForm'>
+			<div class='form-row w-50'>
+				<div class='form-group col-md-6'>
+					<label for='field'>Choose field</label>
+					<select class='browser-default custom-select' name='field'>
+						<option value='numberValue'>Numeric value</option>
+						<option value='name'>Name</option>
+						<option value='age'>Age</option>
+						<option value='phoneNumber'>Phone nember</option>
+						<option value='email'>Email</option>
+						<optgroup label='Address'>
+							<option value='country'>Country</option>
+							<option value='city'>City</option>
+							<option value='street'>Street</option>
+							<option value='houseNumber'>House number</option>
+							<option value='apartmentNumber'>Apartment number</option>
+						</optgroup>
+					</select>
+				</div>
+				<div class='form-group col-md-6'>
+					<div class='custom-control custom-checkbox d-none'>
+						<input type='checkbox' class='custom-control-input' id='emptyValue' name='emptyValue'>
+						<label class='custom-control-label' for='emptyValue'>Field is empty</label>
+					</div>
+					<div class='custom-control custom-checkbox d-none'>
+						<input type='checkbox' class='custom-control-input' id='strictComparison' name='strictComparison'>
+						<label class='custom-control-label' for='strictComparison'>Strict comparison</label>
+					</div>
+					<div class='form-group'>
+						<input type='text' class='form-control' name='string'>
+					</div>
+					<div class='form-group d-none'>
+						<input type='text' class='form-control' name='range[min]' id='minValue' placeholder='min'>
+						<input type='text' class='form-control' name='range[max]' id='maxValue' placeholder='max'>
+					</div>
+				</div>
+				<div class='col-md-12 text-left'>
+					<button type='submit' class='btn btn-danger' id='remove' disabled>Delete</button>
+					<div id='errors'></div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class='row margin-top-24 w-100' id='personList'>
 	<table id='personsList' class='table table-bordered w-100 d-none'>
 		<thead>
 			<tr>
+				<th></th>
 				<th id='name' abbr='asc'>Name <i class='fa fa-fw fa-sort'></i></th>
 				<th id='age' abbr='asc'>Age <i class='fa fa-fw fa-sort'></i></th>
 				<th id='address' abbr='asc'>Address <i class='fa fa-fw fa-sort'></i></th>
 				<th>Phone number</th>
 				<th>Email</th>
+				<th></th>
 			</tr>				
 		</thead>
 		<tbody></tbody>
