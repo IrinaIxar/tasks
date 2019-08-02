@@ -78,7 +78,7 @@ class Person implements JsonSerializable {
      *
      * @return Address
      */ 
-    public function getAddress() : ?Address {
+    public function getAddress() {
         return $this->address;
     }
 
