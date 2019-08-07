@@ -26,9 +26,9 @@ switch ($decoded['method']) {
     		foreach ($decoded['form'] as $row) {
 	    		$form[$row['name']] = $row['value'];
 	    	}
-    	}    	
-    	if((!empty($form) && $form['field'] === 'numberValue') || $decoded['position'] !== '') {
-    		$index = $form['field'] === 'numberValue' ? $form['string'] : $decoded['position'];
+    	}
+    	if((!empty($form) && $form['field'] === 'position') || isset($decoded['position'])) {
+    		$index = $form['field'] === 'position' ? $form['string'] : $decoded['position'];
     		$personList->removeByIndex((int)$index);
     	} else if(in_array($form['field'], ['age', 'houseNumber', 'apartmentNumber'])) {
     		$field = $form['field'];
@@ -38,7 +38,6 @@ switch ($decoded['method']) {
 				$field = 'address';
 				$nestedField = $form['field'];
 			}
-    		//we doesn't have fields in Person address property which are numeric, so nestedField is empty
     		$personList->removeByIntegerField($field, $nestedField, $form['range[min]'], $form['range[max]'], $form['emptyValue']);
     	} else {
     		$field = $form['field'];

@@ -58,4 +58,8 @@ $(document).ready(function(){
 		e.preventDefault();
 		$(this).tab('show');
 	});
+
+    if(window.location.hash) {
+        $('#myTab a[href="'+window.location.hash+'"]').click()
+    }
 })

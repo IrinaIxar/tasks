@@ -2,6 +2,13 @@
 require 'AddressController.php';
 
 class Person implements JsonSerializable {
+    /**
+     * Identifier
+     *
+     * @var string
+     */
+    protected $id;
+
 	/**
      * Name
      *
@@ -36,6 +43,31 @@ class Person implements JsonSerializable {
      * @var string
      */
 	protected $email;
+
+    /**
+     * Position
+     *
+     * @var integer
+     */
+    protected $position;
+
+    /**
+     * Gets person id
+     *
+     * @return $id
+     */ 
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Assigns value to person id
+     *
+     * @param string $id Person id
+     */ 
+    public function setId($id) {
+        $this->id = $id;
+    }
 
 	/**
      * Gets person name
@@ -133,6 +165,24 @@ class Person implements JsonSerializable {
     public function setEmail($email) {
         $this->email = $email;
     }
+
+    /**
+     * Gets position value
+     *
+     * @return $position
+     */ 
+    public function getPosition() {
+        return $this->position;
+    }
+
+    /**
+     * Assigns value to position property
+     *
+     * @param string $position position value
+     */ 
+    public function setPosition($position) {
+        $this->position = (int)$position;
+    }
 	
     /**
      * Person constructor.
@@ -155,11 +205,13 @@ class Person implements JsonSerializable {
     {
         return 
         [
+            'id' => $this->getId(),
             'name' => $this->getName(),
             'age' => $this->getAge(),
             'address' => $this->getAddress(),
             'phoneNumber' => $this->getPhoneNumber(),
-            'email' => $this->getEmail()
+            'email' => $this->getEmail(),
+            'position' => $this->getPosition()
         ];
     }
 }

@@ -6,10 +6,10 @@ function addressToString(obj) {
 	return addressString
 }
 
-function addPersonRow(person, index){
+function addPersonRow(person, index=''){
 	let address = addressToString(person.address)
-	$('#personsList tbody').append($('<tr>')
-		.append($('<td title="numberValue">').append(parseInt(index)+1))
+	$('#personsList tbody').append($('<tr id="'+person.id+'">')
+		.append($('<td title="position">').append(index === '' ? person.position : (parseInt(index)+1)))
 		.append($('<td title="name">').append(person.name))
 		.append($('<td title="age">').append(person.age))
 		.append($('<td title="address">').append(address)
@@ -22,7 +22,9 @@ function addPersonRow(person, index){
 		.append($('<td title="email">').append(person.email))
 		.append($('<td title="delete">').append($('<i class="fa fa-trash" aria-hidden="true">')))
 	)
+}
 
+function addListener() {
 	$('.fa-trash').on('click', (event) => {
 		let parent = $(event.target).parent()
 		parent = $(parent).parent()
@@ -30,7 +32,20 @@ function addPersonRow(person, index){
 		params['method'] = 'remove'
 		params['position'] = $(parent).find('td:first').html()
 		personShowList(params)
+		removeOneFromDB($(parent).attr('id'))
+		updatePosition(params['position'], $(parent).attr('id'))
+		selectPositionUpdate()	
 	})
+}
+
+function selectPositionUpdate() {
+	$('select[name="position"]').html('')
+	let data = listPerson()
+	//append options in select position in create form
+	$('select[name="position"]').append(new Option('Last', (data.length + 1)))
+	for(let ind=1; ind<=data.length; ind++){
+		$('select[name="position"]').append(new Option(ind, ind))
+	}
 }
 
 function getPersonList(){
@@ -40,18 +55,55 @@ function getPersonList(){
 		dataType: 'json',
 		success: (data) => {
 			$('#personsList').removeClass('d-none')
-			//append options in select position in create form
-			$('select[name="position"]').append(new Option('Last', (data.length + 1)))
-			for(let ind=1; ind<=data.length; ind++){
-				$('select[name="position"]').append(new Option(ind, ind))
-			}
 			$.each(data, (index, item) => {
-				addPersonRow(item, index)
+				addPersonRow(item)
 			})
+			selectPositionUpdate()
+			addListener()
 		},
 		error: () => {
 			$('#personList').html('No person list data')
 		}
+	})
+}
+
+function updatePosition(position, id='') {
+	$.ajax({
+		type: 'GET',
+		url: window.location.origin+':3000/persons?position_gte='+position+((id==='') ? '' : '&id_ne='+id),
+		dataType: 'json',
+		success: (data) => {
+			$.each(data, (index, item) => {
+				if (id === '') { //for removing items
+					item.position = parseInt(item.position)-1
+				} else { //for added items
+					item.position = parseInt(item.position)+1
+				}				
+				$.ajax({
+					type: 'PUT',
+					url: window.location.origin+':3000/persons/'+item.id,
+					contentType: 'application/json',
+					dataType: 'json',
+					data: JSON.stringify(item)
+				})
+			})
+		}
+	})
+}
+
+function updatePositionForList() {
+	let list = listPerson()
+	$.each(list, (index, item) => {
+		delete item['delete']
+		item['position'] = parseInt(item['position'])
+		item['age'] = parseInt(item['age'])
+		$.ajax({
+			type: 'PUT',
+			url: window.location.origin+':3000/persons/'+item.id,
+			contentType: 'application/json',
+			dataType: 'json',
+			data: JSON.stringify(item)
+		})
 	})
 }
 
@@ -66,6 +118,8 @@ function addPerson(){
 			data[formData[index]['name']] = formData[index]['value']
 		}
 	}
+	data['position'] = parseInt(data['position'])
+	data['age'] = parseInt(data['age'])
 	$.ajax({
 		type: 'POST',
 		url: window.location.origin+':3000/persons',
@@ -74,13 +128,17 @@ function addPerson(){
 		data: JSON.stringify(data),
 		success: (data) => {
 			let list = listPerson()
-			addPersonRow(data, list.length)
+			addPersonRow(data)
+			addListener()
 			if (data.position !== (list.length+1)) {
 				let params = {}
 				params['method'] = 'add'
 				params['position'] = data.position
 				personShowList(params)
-			}			
+				//update positions only when it is not on last position in array
+				updatePosition(data.position, data.id)
+			}
+			selectPositionUpdate()		
 		},
 		error: () => {
 			$('#errors').html('Somethig wrong');
@@ -93,6 +151,7 @@ function listPerson() {
 	$.each($('#personsList tbody tr'), (index, element) => {
 		let person = {}
 		person['address'] = {}
+		person['id'] = element.id
 		$.each($(element).find('td'), (ind, el) => {
 			if ($(el).attr('title') === 'address') {
 				person['address']['country'] = $(element).find('input[name="country"]').val()
@@ -109,8 +168,9 @@ function listPerson() {
 	return list
 }
 
-function personShowList(params) {
+function personShowList(params, method='') {
 	params['list'] = listPerson()
+	let list = []
 	$.ajax({
 		type: 'POST',
 		url: window.location.origin+'/src/Controllers/PersonListHandler.php',
@@ -120,8 +180,14 @@ function personShowList(params) {
 		success: (data) => {
 			$('#personsList tbody').html('')
 			$.each(data, (index, element) => {
-				addPersonRow(element, index)
+				addPersonRow(element, method === 'remove' ? index : '')
+				list.push(element.id)
 			})
+			addListener()
+			if(method === 'remove') {
+				//remove items that are not displayed
+				removeFromDB(list)
+			}
 		},
 		error: (xhr, status, error) => {
 			$('#personList').html('No person list data')
@@ -133,18 +199,44 @@ function removePerson() {
 	let params = {}
 	params['form'] = $('.deleteForm').serializeArray()
 	params['method'] = 'remove'
-	personShowList(params)
+	personShowList(params, 'remove')
+	selectPositionUpdate()
+}
+
+function removeFromDB(ids) {
+	let list = listPerson()
+	$.each(list, (index, item) => {
+		if($.inArray(item['id'], ids) !== -1) {
+			$.ajax({
+				type: 'DELETE',
+				url: window.location.origin+':3000/persons/'+item.id
+			})
+		}
+	})
+	updatePositionForList()
+}
+
+function removeOneFromDB(id) {
+	$.ajax({
+		type: 'DELETE',
+		url: window.location.origin+':3000/persons/'+id
+	})
 }
 
 $(document).ready(()=>{
 	//show persons list
 	getPersonList()
 
-	//create new person block
+	/*
+	 * Create new  Person block
+	 */
+
+	//on click create button to show form
 	$('#create').on('click', () => {
 		$('#addForm').toggle('slow')
 	})
 
+	//validation for create form
 	$('.addForm').validate({
 		rules: {
 			name: {
@@ -209,6 +301,10 @@ $(document).ready(()=>{
 		}
 	})
 
+	/*
+	 * Sort block
+	 */
+
 	//sort persons by field
 	$('.fa-sort').on('click', (event) => {
 		let parent = $(event.target).parent()
@@ -221,11 +317,16 @@ $(document).ready(()=>{
 		personShowList(params)
 	})
 
+	/*
+	 * Delete Person block
+	 */
+
 	//delete person block
 	$('#delete').on('click', () => {
 		$('#deleteForm').toggle('slow')
 	})
 
+	//validation initialization for delete form
 	$('.deleteForm').validate({
 		rules: {
 			field: {
@@ -240,7 +341,7 @@ $(document).ready(()=>{
 			string: {
 				checkRangeValue: true,
 				required: () => {
-					if($('#strictComparison').prop('checked') || ($('select[name="field"]').val() === 'numberValue')) return true
+					if($('#strictComparison').prop('checked') || ($('select[name="field"]').val() === 'position')) return true
 					return false
 				}				
 			},
@@ -257,6 +358,7 @@ $(document).ready(()=>{
 		},
 		onkeyup: () => {
 			$('.deleteForm').valid()
+			//button becomes active if at least one field is filled
 			if ($('.deleteForm').valid() && (	$('#strictComparison').prop('checked') || 
 												$('#emptyValue').prop('checked') || 
 												$('input[name="string"]').val() !== '' ||
@@ -268,7 +370,7 @@ $(document).ready(()=>{
 			}
 		},
 		onclick: () => {
-			if($('select[name="field"]').val() === 'numberValue') {
+			if($('select[name="field"]').val() === 'position') {
 				return false
 			}
 			if ($('.deleteForm').valid() && (	$('#strictComparison').prop('checked') || 
@@ -294,6 +396,7 @@ $(document).ready(()=>{
 					$('#remove').attr('disabled', 'disabled')
 				}
 				$('.deleteForm')[0].reset()
+				//shows only "string" input for selected Position in Fields
 				$.each($('.deleteForm input[type!="hidden"]'), (ind, el) => {
 					let parent = $(el).parent()
 					$(parent).addClass('d-none')
@@ -305,9 +408,9 @@ $(document).ready(()=>{
 		}
 	})
 
-	//on select field block
+	//on select Field in delete form
 	const fields={
-		'numberValue' : ['string'],
+		'position' : ['string'],
 		'name' : ['string', 'strict'],
 		'age' : ['range'],
 		'country' : ['empty', 'string', 'strict'],
@@ -335,6 +438,7 @@ $(document).ready(()=>{
 		})
 	})
 
+	//shows only "isEmpty" field or "isStrict" and "string" fields
 	$('#emptyValue').on('change', () => {
         if($('#emptyValue').prop('checked')) {
         	$('input[name="strictComparison"]').parent().addClass('d-none')
