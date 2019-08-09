@@ -66,5 +66,50 @@
     }
   ],
   "persons": [
+    {
+      "address": {
+        "country": "Moldova",
+        "city": "Chisinau",
+        "street": "Some street",
+        "houseNumber": "23",
+        "apartmentNumber": ""
+      },
+      "position": 11,
+      "name": "Some Anne",
+      "age": 28,
+      "phoneNumber": "+373 79112233",
+      "email": "some.anne@gmail.com",
+      "id": 2
+    },
+    {
+      "address": {
+        "country": "Moldova",
+        "city": "Chisinau",
+        "street": "Some street",
+        "houseNumber": "22",
+        "apartmentNumber": ""
+      },
+      "position": 10,
+      "name": "Some John",
+      "age": 29,
+      "phoneNumber": "+373 69112233",
+      "email": "some.john@gmail.com",
+      "id": 3
+    },
+    {
+      "address": {
+        "country": "Moldova",
+        "city": "Chisinau",
+        "street": "Some street",
+        "houseNumber": "30",
+        "apartmentNumber": ""
+      },
+      "position": 9,
+      "name": "Some Mary",
+      "age": 30,
+      "phoneNumber": "+373 69112230",
+      "email": "some.mary@gmail.com",
+      "id": 4
+    }
   ]
 }

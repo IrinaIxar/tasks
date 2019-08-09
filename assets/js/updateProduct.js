@@ -23,6 +23,12 @@ $(document).ready(() => {
                 $('#update').removeAttr('disabled')
             }
         },
+        onclick: () => {
+            $('#updateForm').valid()
+            if ($('#updateForm').valid()){
+                $('#update').removeAttr('disabled')
+            }
+        },
         submitHandler: (form, event) => {
             if ($('#updateForm').valid()){
                 $.ajax({

@@ -1,0 +1,29 @@
+<!-- config/xml/Product.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+	<entity name="Product" table="products">
+
+		<indexes>
+			<index columns="category_id"/>
+		</indexes>
+
+		<id name="id" type="integer">
+			<generator strategy="AUTO" />
+		</id>
+
+		<field name="name" type="string" nullable="false"/>
+
+		<field name="price" type="decimal" nullable="true" precision="10" scale="2" />
+
+		<many-to-one field="category" target-entity="Category">
+			<join-column name="category_id" referenced-column-name="id" nullable="false" />
+		</many-to-one>
+
+		<field name="count" type="integer" nullable="true"/>
+
+		<field name="deleted" type="boolean"/>
+	</entity>
+</doctrine-mapping>

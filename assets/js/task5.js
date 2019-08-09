@@ -101,7 +101,7 @@ function updatePositionForList() {
 			type: 'PUT',
 			url: window.location.origin+':3000/persons/'+item.id,
 			contentType: 'application/json',
-			dataType: 'json',
+			dataType: 'jsonp',
 			data: JSON.stringify(item)
 		})
 	})
@@ -173,14 +173,14 @@ function personShowList(params, method='') {
 	let list = []
 	$.ajax({
 		type: 'POST',
-		url: window.location.origin+'/src/Controllers/PersonListHandler.php',
+		url: window.location.origin+'/src/Person/List.php',
 		contentType: 'application/json',
 		dataType: 'json',
 		data: JSON.stringify(params),
 		success: (data) => {
 			$('#personsList tbody').html('')
 			$.each(data, (index, element) => {
-				addPersonRow(element, method === 'remove' ? index : '')
+				addPersonRow(element, index)
 				list.push(element.id)
 			})
 			addListener()
