@@ -1,10 +1,4 @@
 <?php
-// require 'DBConnection.php';
-
-// $conn = new DBConnection();
-// $categories = $conn->query('Select * FROM categories');
-// $conn->close();
-
 require '../../vendor/doctrine/bootstrap.php';
 
 $categoryRepository = $entityManager->getRepository('Category');
