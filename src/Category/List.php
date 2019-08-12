@@ -4,6 +4,8 @@ require '../../vendor/doctrine/bootstrap.php';
 $qb = $entityManager->createQueryBuilder();
 $qb->from('Product', 'p')
 	->select('c.name')
+	->where('p.deleted = 0')
+	->andWhere('c.deleted = 0')
 	->addSelect('count(p.id) as count')
 	->leftJoin('p.category', 'c')
 	->groupby('c.id');

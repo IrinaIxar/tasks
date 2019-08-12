@@ -57,7 +57,7 @@ echo "
 			</form>
 		</div>
 	</body>
-	<script src='/assets/js/createProduct.js'></script>
+	<script src='/assets/js/Product/create.js'></script>
 </html>
 
 ";

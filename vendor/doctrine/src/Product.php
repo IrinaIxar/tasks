@@ -21,6 +21,9 @@ class Product implements JsonSerializable
 
     public function setName($name)
     {
+        if(isset($name) && $name === '') {
+            $name = NULL;
+        } 
         $this->name = $name;
     }
 

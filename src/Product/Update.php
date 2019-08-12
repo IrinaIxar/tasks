@@ -79,7 +79,7 @@ echo "
 		echo "
 		</div>
 	</body>
-	<script src='/assets/js/updateProduct.js'></script>
+	<script src='/assets/js/Product/update.js'></script>
 </html>
 
 ";
