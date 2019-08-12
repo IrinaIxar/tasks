@@ -1,5 +1,5 @@
 <?php
-require '../../vendor/doctrine/bootstrap.php';
+require '../../bootstrap.php';
 
 $categoryRepository = $entityManager->getRepository('Category');
 $category = $categoryRepository->find($_POST['category_id']);

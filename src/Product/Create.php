@@ -1,5 +1,5 @@
 <?php
-require '../../vendor/doctrine/bootstrap.php';
+require '../../bootstrap.php';
 
 $categoryRepository = $entityManager->getRepository('Category');
 $categories = $categoryRepository->findBy(['deleted' => 0], ['name' => 'ASC']);

@@ -1,5 +1,5 @@
 <?php
-require '../../vendor/doctrine/bootstrap.php';
+require '../../bootstrap.php';
 
 $qb = $entityManager->createQueryBuilder();
 $qb->from('Product', 'p')

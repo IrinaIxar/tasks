@@ -1,5 +1,5 @@
 <?php
-require '../../vendor/doctrine/bootstrap.php';
+require '../../bootstrap.php';
 
 $countPerPage = isset($_GET['countPerPage']) ? (int)$_GET['countPerPage'] : 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

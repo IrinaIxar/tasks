@@ -1,3 +1,4 @@
 <IfModule dir_module>
     DirectoryIndex public/index.php
 </IfModule>
+

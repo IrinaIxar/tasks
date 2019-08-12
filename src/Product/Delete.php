@@ -1,5 +1,5 @@
 <?php
-require '../../vendor/doctrine/bootstrap.php';
+require '../../bootstrap.php';
 
 $str = explode('/', $_SERVER['REQUEST_URI']);
 
