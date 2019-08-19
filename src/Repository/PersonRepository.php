@@ -4,6 +4,7 @@ require_once '../../Entity/Address.php';
 require_once '../../Entity/Catalog.php';
 
 class PersonRepository {
+	protected $file = '/src/resources/persons.json';
 	/**
 	 * Array of persons
 	 *
@@ -18,7 +19,7 @@ class PersonRepository {
 
 	public function __construct(Catalog $catalog) {
 		//getting data from json file
-		$content = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/src/resources/persons.json');
+		$content = file_get_contents($_SERVER['DOCUMENT_ROOT'].$this->file);
 		$this->persons = json_decode($content, true);
 		$this->catalog = $catalog;
 	}
@@ -128,7 +129,7 @@ class PersonRepository {
 	 * Updates positions for all persons via json-server
 	 */
 	public function saveChangesToSourceFile() {
-		$fp = fopen($_SERVER['DOCUMENT_ROOT'].'/src/resources/persons.json', 'w');
+		$fp = fopen($_SERVER['DOCUMENT_ROOT'].$this->file, 'w');
 		fwrite($fp, json_encode($this->catalog->getCatalog()));
 		fclose($fp);
 	}
