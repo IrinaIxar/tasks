@@ -1,6 +1,4 @@
 <?php 
-require 'Address.php';
-
 class Person implements JsonSerializable {
     /**
      * Identifier
@@ -188,14 +186,13 @@ class Person implements JsonSerializable {
      * Person constructor.
      *
      * @param array $person
+     * @param Address $address
      */
-    public function __construct($person) {
+    public function __construct($person, Address $address) {
     	foreach ($person as $key => $value) {
-    		if($key !== 'address') {
-                $this->{$key} = $value;
-    		}
+            $this->{$key} = $value;
     	}
-        $this->address = new Address($person['address']);
+        $this->address = $address;
     }
 
     /**

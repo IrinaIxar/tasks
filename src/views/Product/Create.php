@@ -1,7 +1,9 @@
 <?php
-require '../../bootstrap.php';
+require '../../Entity/DoctrineEM.php';
 
-$categoryRepository = $entityManager->getRepository('Category');
+$em = DoctrineEM::getInstance();
+
+$categoryRepository = $em->getRepository('Category');
 $categories = $categoryRepository->findBy(['deleted' => 0], ['name' => 'ASC']);
 
 echo "
@@ -9,7 +11,7 @@ echo "
 <html lang='en-US'>
 	<head>
 		"; 
-include('../../templates/includes/header.html'); 
+include('../../../templates/includes/header.html'); 
 echo " 
 		<title>Create product</title>
 	</head>
@@ -43,7 +45,6 @@ echo "
 						<select class='form-control' name='category_id'>
 						";
 						foreach ($categories as $category) {
-							var_dump($category);
 							echo '<option value='.$category->getId().'>'.$category->getName().'</option>';
 						}
 					echo "

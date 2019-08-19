@@ -1,23 +1,17 @@
 <?php
-require '../../bootstrap.php';
+require '../../Repository/ProductRepository.php';
+require '../../Repository/CategoryRepository.php';
 
 $str = explode('/', $_SERVER['REQUEST_URI']);
-
-$categoryRepository = $entityManager->getRepository('Category');
-$productRepository = $entityManager->getRepository('Product');
-$product = $productRepository->find(end($str));
+$productRepository = new ProductRepository();
+$product = $productRepository->findById(end($str));
+$categoryRepository = new CategoryRepository();
 
 if(!empty($_POST) && isset($product)){
-	$category = $categoryRepository->find($_POST['category_id']);
-
-	$product->setName($_POST['name']);
-	$product->setPrice((float)$_POST['price']);
-	$product->setCategory($category);
-	$product->setCount((int)$_POST['count']);
-
-	$entityManager->flush();
+	$_POST['id'] = end($str);
+	$productRepository->update($_POST);
 } else {
-	$categories = $categoryRepository->findBy(['deleted' => 0], ['name' => 'ASC']);
+	$categories = $categoryRepository->findAll();
 }
 
 echo "
@@ -25,7 +19,7 @@ echo "
 <html lang='en-US'>
 	<head>
 		"; 
-include('../../templates/includes/header.html'); 
+include('../../../templates/includes/header.html'); 
 echo " 
 		<title>Update product</title>
 	</head>

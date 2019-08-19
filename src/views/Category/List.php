@@ -1,23 +1,15 @@
 <?php
-require '../../bootstrap.php';
+require '../../Repository/CategoryRepository.php';
 
-$qb = $entityManager->createQueryBuilder();
-$qb->from('Product', 'p')
-	->select('c.name')
-	->where('p.deleted = 0')
-	->andWhere('c.deleted = 0')
-	->addSelect('count(p.id) as count')
-	->leftJoin('p.category', 'c')
-	->groupby('c.id');
-
-$categories = $qb->getQuery()->execute();
+$categoryRepository = new CategoryRepository();
+$categories = $categoryRepository->findAllProductCount($_GET['sort'], $_GET['order']);
 
 echo "
 <!DOCTYPE html>
 <html lang='en-US'>
 	<head>
 		"; 
-include('../../templates/includes/header.html'); 
+include('../../../templates/includes/header.html'); 
 echo " 
 		<title>Category list</title>
 	</head>
@@ -30,11 +22,11 @@ echo "
 					<li class='breadcrumb-item active' aria-current='page'>Category list</li>
 				</ol>
 			</nav>
-			<table class='table table-bordered w-50'>
+			<table class='table table-bordered w-50' id='categories'>
 				<thead>
 					<tr>
-						<th class='align-middle'>Category name</th>
-						<th class='text-center' width='25%'>Products count</th>
+						<th class='align-middle' id='name' abbr='".($_GET['sort'] === 'name' ? ($_GET['order'] === 'asc' ? 'desc' : 'asc') : 'asc')."'>Category name <i class='fa fa-fw fa-sort'></i></th>
+						<th class='text-center' width='25%' id='count' abbr='".($_GET['sort'] === 'count' ? ($_GET['order'] === 'asc' ? 'desc' : 'asc') : 'asc')."'>Products count <i class='fa fa-fw fa-sort'></i></th>
 					</tr>
 				</thead>
 				<tbody>";
@@ -52,7 +44,7 @@ echo "
 		</div>
 	</body>
 </html>
-
+<script src='/assets/js/Category/list.js'></script>
 ";
 
 ?>

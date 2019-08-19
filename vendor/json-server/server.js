@@ -5,6 +5,11 @@ const router = jsonServer.router(path.join(__dirname, 'registers.json'))
 const middlewares = jsonServer.defaults()
 
 router.render = function (req, res) {
+	if (req.method === 'POST') {
+	    // Converts POST to GET and move payload to query params
+	    // This way it will make JSON Server that it's GET request
+	    console.log(req.body)
+	  }
 	var data = {}
 	let address = {}
 	result = res.locals.data

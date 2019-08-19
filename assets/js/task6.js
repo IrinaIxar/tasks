@@ -15,7 +15,7 @@ function addListener() {
 	$('.fa-pencil').on('click', (event) => {
 		let parent = $(event.target).parent()
 		parent = $(parent).parent()
-		window.location.href = window.location.origin+'/src/Product/Update.php/'+$(parent).attr('id')
+		window.location.href = window.location.origin+'/src/views/Product/Update.php/'+$(parent).attr('id')
 	})
 
 	$('.fa-trash').on('click', (event) => {
@@ -24,7 +24,7 @@ function addListener() {
 			parent = $(parent).parent()
 			$.ajax({
 				type: 'GET',
-				url: window.location.origin+'/src/Product/Delete.php/'+$(parent).attr('id'),
+				url: window.location.origin+'/src/views/Product/Delete.php/'+$(parent).attr('id'),
 				dataType: 'json',
 				success: (data) => {
 					if (data.result === 'deleted') {
@@ -45,7 +45,7 @@ function addListener() {
 function addPagination() {
 	$.ajax({
 		type: 'GET',
-		url: window.location.origin+'/src/Product/List.php',
+		url: window.location.origin+'/src/views/Product/List.php',
 		dataType: 'json',
 		data: {'page':1, 'countPerPage':countPerPage},
 		success: (data) => {
@@ -81,14 +81,15 @@ function addPagination() {
 function showProductList(page=1) {
 	$.ajax({
 		type: 'GET',
-		url: window.location.origin+'/src/Product/List.php',
+		url: window.location.origin+'/src/views/Product/List.php',
 		dataType: 'json',
 		data: {'page':page, 'countPerPage':countPerPage},
 		success: (data) => {
 			$('#products tbody').html('')
 			if(parseInt(data.productsCount) > 0) {
 				$.each(data.products, (index, element) => {
-					addProductRow(element, index)
+					let ind = ((page-1)*countPerPage) + index
+					addProductRow(element, ind)
 				})
 				addListener()
 			}			

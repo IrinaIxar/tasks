@@ -13,7 +13,7 @@ class Catalog{
      *
      * @var array
      */
-	protected $integerFields;
+	protected $integerFields=[];
 
 	/**
      * Gets catalog array of objects
@@ -23,13 +23,22 @@ class Catalog{
 	public function getCatalog() {
     	return $this->catalog;
     }
+
+    /**
+     * Sets catalog property
+     *
+     * @param array $catalog
+     */ 
+    public function setCatalog($catalog) {
+        $this->catalog = $catalog;
+    }
 	
 	/**
      * Catalog constructor
      *
      * @param array $catalog
      */ 
-    public function __construct($catalog) {
+    public function __construct($catalog=[]) {
         $this->catalog = $catalog;
     }
 
@@ -57,7 +66,7 @@ class Catalog{
     		usort($array,function ($a, $b) use(&$field,&$order,$method,$nestedMethod)
 			{
 				if($a->{$method}()->{$nestedMethod}() === $b->{$method}()->{$nestedMethod}()){return 0;}
-				if($order === 'asc') return ($a->{$method}()->{$nestedMethod}() < $b->{$method}()->{$nestedMethod}()) ? -1 : 1;
+				if(strtolower($order) === 'asc') return ($a->{$method}()->{$nestedMethod}() < $b->{$method}()->{$nestedMethod}()) ? -1 : 1;
 				else return ($a->{$method}()->{$nestedMethod}() > $b->{$method}()->{$nestedMethod}()) ? -1 : 1;
 
 			});
@@ -65,7 +74,7 @@ class Catalog{
     		usort($array,function ($a, $b) use(&$field,&$order,$method)
 			{
 				if($a->{$method}() === $b->{$method}()){return 0;}
-				if($order === 'asc') return ($a->{$method}() < $b->{$method}()) ? -1 : 1;
+				if(strtolower($order) === 'asc') return ($a->{$method}() < $b->{$method}()) ? -1 : 1;
 				else return ($a->{$method}() > $b->{$method}()) ? -1 : 1;
 
 			});
@@ -86,13 +95,13 @@ class Catalog{
     		$nestedMethod = 'get'.ucfirst($nestedField);
 			usort($array,function ($a, $b) use(&$field,&$order,$method,$nestedMethod)
 			{
-				if($order === 'asc') return strcmp($a->{$method}()->{$nestedMethod}(), $b->{$method}()->{$nestedMethod}());
+				if(strtolower($order) === 'asc') return strcmp($a->{$method}()->{$nestedMethod}(), $b->{$method}()->{$nestedMethod}());
 				else return strcmp($b->{$method}()->{$nestedMethod}(), $a->{$method}()->{$nestedMethod}());
 			});
     	} else {
     		usort($array,function ($a, $b) use(&$field,&$order,$method)
 			{
-				if($order === 'asc') return strcmp($a->{$method}(), $b->{$method}());
+				if(strtolower($order) === 'asc') return strcmp($a->{$method}(), $b->{$method}());
 				else return strcmp($b->{$method}(), $a->{$method}());
 			});
     	}
@@ -189,9 +198,9 @@ class Catalog{
     /**
      * Sets item to needed position
      *
+     * @param integer $index new position for created item
      * @param string $field Object identifier
      * @param string $value value of Object identifier
-     * @param integer $index new position for created item
      */ 
     public function setNewPosition($index, $field='', $value='') {
         if($field !== '' && $value !== ''){
@@ -208,6 +217,17 @@ class Catalog{
         array_splice($this->catalog, $index, 0, $item);
         //reindex
         $this->catalog = array_values($this->catalog); 
+    }
+
+    /**
+     * Adds new item and changes position for it
+     *
+     * @param object $item Object
+     * @param integer $index new position for created item
+     */ 
+    public function setNewItem($item, $index) {
+        array_push($this->catalog, $item);
+        $this->setNewPosition($index);
     }
 }
 ?>
