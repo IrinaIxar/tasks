@@ -1,4 +1,3 @@
-const countPerPage = 10
 function addProductRow(product, index) {
 	$('#products tbody').append($('<tr id="'+product.id+'">')
 		.append($('<td>').append(parseInt(index) +1))
@@ -15,7 +14,7 @@ function addListener() {
 	$('.fa-pencil').on('click', (event) => {
 		let parent = $(event.target).parent()
 		parent = $(parent).parent()
-		window.location.href = window.location.origin+'/src/views/Product/Update.php/'+$(parent).attr('id')
+		window.location.href = window.location.origin+'/product/update/'+$(parent).attr('id')
 	})
 
 	$('.fa-trash').on('click', (event) => {
@@ -24,7 +23,7 @@ function addListener() {
 			parent = $(parent).parent()
 			$.ajax({
 				type: 'GET',
-				url: window.location.origin+'/src/views/Product/Delete.php/'+$(parent).attr('id'),
+				url: window.location.origin+'/product/delete/'+$(parent).attr('id'),
 				dataType: 'json',
 				success: (data) => {
 					if (data.result === 'deleted') {
@@ -45,7 +44,7 @@ function addListener() {
 function addPagination() {
 	$.ajax({
 		type: 'GET',
-		url: window.location.origin+'/src/views/Product/List.php',
+		url: window.location.origin+'/product/list',
 		dataType: 'json',
 		data: {'page':1, 'countPerPage':countPerPage},
 		success: (data) => {
@@ -62,7 +61,7 @@ function addPagination() {
 					}
 					//needed only when we have more than 1 page
 					$('.page-link').on('click', (event) => {
-						showProductList(parseInt($(event.target).text()))
+						showProductList(parseInt($(event.target).text()), $('#sort').val(), $('#order').val())
 						let parent = $(event.target).parent()
 						$.each($('.page-item'), (index, element) => {
 							$(element).removeClass('disabled')
@@ -78,12 +77,12 @@ function addPagination() {
 	})
 }
 
-function showProductList(page=1) {
+function showProductList(page=1, sort='price', order='asc') {
 	$.ajax({
 		type: 'GET',
-		url: window.location.origin+'/src/views/Product/List.php',
+		url: window.location.origin+'/product/list',
 		dataType: 'json',
-		data: {'page':page, 'countPerPage':countPerPage},
+		data: {'page':page, 'countPerPage':countPerPage, 'sort':sort, 'order':order},
 		success: (data) => {
 			$('#products tbody').html('')
 			if(parseInt(data.productsCount) > 0) {
@@ -91,6 +90,7 @@ function showProductList(page=1) {
 					let ind = ((page-1)*countPerPage) + index
 					addProductRow(element, ind)
 				})
+				$('th[id="'+data.sort+'"]').attr('abbr', data.order === 'asc' ? 'desc' : 'asc')
 				addListener()
 			}			
 		},
@@ -103,4 +103,13 @@ function showProductList(page=1) {
 $(document).ready(() => {
 	showProductList()
 	addPagination()
+
+	//on sort buttons click
+	$('.fa-sort').on('click', (event) => {
+		let parent = $(event.target).parent()
+		let order = $(parent).attr('abbr')
+		$('#sort').val($(parent).attr('id'))
+		$('#order').val(order)
+        showProductList($('li[class="page-item disabled"] > a').text(), $(parent).attr('id'), order)
+	})
 })

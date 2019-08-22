@@ -118,7 +118,6 @@ function checkCurrentValue(){
 		
 		//check if current value not more than max value
 		//do this only if length of current value is 1 less than max value length and signs of current and max value are equal
-		console.log(parseFloat(currentValue) > parseFloat(maxValue))
 		if(((maxValue[0] === '-' && currentValue[0] === '-') || (parseFloat(maxValue[0]) > 0 && parseFloat(currentValue[0]) > 0)) 
 			&& (currentValue.length == (maxValueLength -1))
 			&& (maxValueLength > 1)){ //current value maybe negative

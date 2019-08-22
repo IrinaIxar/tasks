@@ -1,7 +1,6 @@
 <?php
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 
 class DoctrineEM {
 	private static $instance = null;

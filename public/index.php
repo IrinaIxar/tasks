@@ -1,21 +1,10 @@
 <?php
-echo '
-<!DOCTYPE html>
-<html lang="en-US">
-	<head>
-		'; 
-include('../templates/includes/header.html'); 
-echo ' 
-		<title>Tasks</title>
-	</head>
-	<body>
-		<div class="container">';
-include('../templates/includes/navigation.html');
-echo '
-		</div>
-	</body>
-</html>
+require_once '../vendor/autoload.php';
+require '../config/consts.php';
+require '../src/Router.php';
+require '../src/Kernel.php';
+require_once '../src/Controllers/Controller.php';
 
-';
-
+$router = new Router();
+$kernel = new Kernel($router);
 ?>

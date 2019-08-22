@@ -27,7 +27,7 @@ $(document).ready(() => {
             if ($('#addForm').valid()){
                 $.ajax({
                     type: 'POST',
-                    url: window.location.origin+'/src/views/Product/Add.php',
+                    url: window.location.origin+'/product/add',
                     data: $('#addForm').serialize(),
                     dataType: 'json',
                     success: (data) => {

@@ -1,0 +1,26 @@
+<nav aria-label='breadcrumb'>
+	<ol class='breadcrumb'>
+		<li class='breadcrumb-item'><a href='/'>Home</a></li>
+		<li class='breadcrumb-item'><a href='/#task6'>Product list</a></li>
+		<li class='breadcrumb-item active' aria-current='page'>Category list</li>
+	</ol>
+</nav>
+<table class='table table-bordered w-50' id='categories'>
+	<thead>
+		<tr>
+			<th class='align-middle' id='name' abbr='<? echo ($sort === "name" ? ($order === "asc" ? "desc" : "asc") : "asc");?>'>Category name <i class='fa fa-fw fa-sort'></i></th>
+			<th class='text-center' width='25%' id='count' abbr='<? echo ($sort === "count" ? ($order === "asc" ? "desc" : "asc") : "asc");?>'>Products count <i class='fa fa-fw fa-sort'></i></th>
+		</tr>
+	</thead>
+	<tbody>
+		<? if(!empty($categories)) { ?>
+			<? foreach ($categories as $category) { ?>
+			<tr>
+				<td><? echo $category['name']; ?></td>
+				<td class='text-center' width='25%'><? echo $category['count']; ?></td>
+			</tr>
+			<? } ?>
+		<? } ?>
+	</tbody>
+</table>
+<script src='/assets/js/Category/list.js'></script>

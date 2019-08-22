@@ -1,6 +1,4 @@
 <?php
-require_once '../../Entity/DoctrineEM.php';
-
 class CategoryRepository {
 	protected $em;
 	protected $categoryRepository;

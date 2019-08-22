@@ -8,7 +8,7 @@ function addressToString(obj) {
 
 function addPersonRow(person){
 	let address = addressToString(person.address)
-	$('#personsList tbody').append($('<tr id="'+person.id+'">')
+	$('#personsList tbody').append($('<tr id="'+person.position+'">')
 		.append($('<td title="position">').append(person.position))
 		.append($('<td title="name">').append(person.name))
 		.append($('<td title="age">').append(person.age))
@@ -30,7 +30,7 @@ function addListener() {
 		parent = $(parent).parent()
 		$.ajax({
 			type: 'GET',
-			url: window.location.origin+'/src/views/Person/Delete.php/'+$(parent).find('td:first').html(),
+			url: window.location.origin+'/person/delete/'+$(parent).find('td:first').html(),
 			dataType: 'json',
 			success: (data) => {
 				listUpdate(data)
@@ -67,7 +67,7 @@ function listUpdate(data) {
 function addPerson(){
 	$.ajax({
 		type: 'POST',
-		url: window.location.origin+'/src/views/Person/Add.php',
+		url: window.location.origin+'/person/add',
 		dataType: 'json',
 		data: $('.addForm').serialize(),
 		success: (data) => {
@@ -82,7 +82,7 @@ function addPerson(){
 function removePerson() {
 	$.ajax({
 		type: 'POST',
-		url: window.location.origin+'/src/views/Person/Delete.php',
+		url: window.location.origin+'/person/delete',
 		dataType: 'json',
 		data: $('.deleteForm').serialize(),
 		success: (data) => {
@@ -96,8 +96,8 @@ function removePerson() {
 
 function personListShow(params={}) {
 	$.ajax({
-		type: 'POST',
-		url: window.location.origin+'/src/views/Person/List.php',
+		type: 'GET',
+		url: window.location.origin+'/person/list',
 		dataType: 'json',
 		data: params,
 		success: (data) => {

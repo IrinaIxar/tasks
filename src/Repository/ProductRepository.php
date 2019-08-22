@@ -1,7 +1,4 @@
 <?php
-require_once '../../Entity/DoctrineEM.php';
-require '../../Entity/Product.php';
-
 class ProductRepository {
 	protected $em;
 	protected $productRepository;

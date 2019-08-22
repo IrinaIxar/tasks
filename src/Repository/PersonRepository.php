@@ -1,10 +1,7 @@
 <?php
-require_once '../../Entity/Person.php';
-require_once '../../Entity/Address.php';
-require_once '../../Entity/Catalog.php';
-
 class PersonRepository {
-	protected $file = '/src/resources/persons.json';
+	protected $file = '/src/Resources/persons.json';
+
 	/**
 	 * Array of persons
 	 *
@@ -133,19 +130,4 @@ class PersonRepository {
 		fwrite($fp, json_encode($this->catalog->getCatalog()));
 		fclose($fp);
 	}
-}
-
-function getPersonRepository() {
-	$catalog = new Catalog();
-	$persons = new PersonRepository($catalog);
-
-	$personsArray = [];
-	foreach ($persons->getPersons() as $person) {
-	    $address = new Address($person['address']);
-	    unset($person['address']);
-		$personsArray[] = new Person($person, $address);
-	}
-	$persons->setPersonsToCatalog($personsArray);
-
-	return $persons;
 }
