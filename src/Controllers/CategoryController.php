@@ -1,5 +1,5 @@
 <?php
-require '../src/Repository/CategoryRepository.php';
+require '../src/Repositories/CategoryRepository.php';
 
 class CategoryController extends Controller {
 	/**

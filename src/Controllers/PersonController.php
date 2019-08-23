@@ -1,5 +1,5 @@
 <?php
-require '../src/Repository/PersonRepository.php';
+require '../src/Repositories/PersonRepository.php';
 
 class PersonController extends Controller {
 	protected $persons;

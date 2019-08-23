@@ -1,6 +1,6 @@
 <?php
-require '../src/Repository/ProductRepository.php';
-require '../src/Repository/CategoryRepository.php';
+require '../src/Repositories/ProductRepository.php';
+require '../src/Repositories/CategoryRepository.php';
 
 class ProductController extends Controller {
 	/**
