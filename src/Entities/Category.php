@@ -1,5 +1,4 @@
 <?php
-// src/Entity/Category.php
 class Category implements JsonSerializable
 {
     protected $id;

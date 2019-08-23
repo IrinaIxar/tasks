@@ -19,7 +19,7 @@ class PersonController extends Controller {
 	}
 
 	/**
-     * Products list
+     * Persons list
      *
      * @param string $sort object field is sorted
      * @param string $order asc/desc sort
@@ -30,7 +30,7 @@ class PersonController extends Controller {
 	}
 
 	/**
-     * Create product
+     * Add person to list
      *
      * @return mixed string|view 
      */ 
@@ -52,7 +52,7 @@ class PersonController extends Controller {
 	}
 
 	/**
-     * Removes product
+     * Removes person from list
      *
      * @param integer $id
      * @return string

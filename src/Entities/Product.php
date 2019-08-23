@@ -1,5 +1,4 @@
 <?php
-// src/Entity/Product.php
 class Product implements JsonSerializable
 {
     protected $id;
