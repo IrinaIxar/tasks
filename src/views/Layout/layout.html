@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-        <? include("../templates/includes/header.html"); ?>
+        <? include("../src/Views/includes/header.html"); ?>
     </head>
     <body>
         <div class="container">
             <header>
-                <? if ($hasNavigation !== false) include("../templates/includes/navigation.html"); ?>
+                <? if ($hasNavigation !== false) include("../src/Views/includes/navigation.html"); ?>
             </header>
             <?= $body ?>
         </div>

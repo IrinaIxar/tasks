@@ -12,6 +12,7 @@ function clearData(children){
 	$('#cityInfo').addClass('d-none');
 }
 function onSelectObject(parent='') {
+	loaderShow()
 	var parentVal = 0;
 	var params = {};
 	if (parent) {
@@ -34,6 +35,7 @@ function onSelectObject(parent='') {
 		dataType: 'json',
 		data: params,
 		success: function (data) {
+			loaderHide()
 			clearData(children);
 			if (children!='cityInfo' && data){
 				var select = $('#'+children);
@@ -51,7 +53,8 @@ function onSelectObject(parent='') {
 	});
 }
 
-$(document).ready(function(){	
+$(document).ready(() => {
+	addLoader()
 	$('select').change(function(){
 		parent = $(this).attr('id');
 		onSelectObject(parent);

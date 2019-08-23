@@ -108,14 +108,26 @@ $.validator.addMethod(
     'Please enter number corresponding first column in the table'
 );
 
-$(document).ready(function(){
-	$('#myTab a').on('click', function (e) {
-		$('#'+$(this).attr('aria-controls')).load('/templates/'+$(this).attr('alt')+'.html', function() {
-			$.getScript( '/assets/js/'+$(this).attr('id')+'.js');
-		});
-		e.preventDefault();
-		$(this).tab('show');
-	});
+function addLoader() {
+    $('#loader').html('<div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>')
+}
+
+function loaderShow() {
+    $('#loader').removeClass('d-none')
+}
+
+function loaderHide() {
+    $('#loader').addClass('d-none')
+}
+
+$(document).ready(() => {
+    $('#myTab a').on('click', (e) => {
+        $('#'+$(e.target).attr('aria-controls')).load('/src/Views/Layout/'+$(e.target).attr('alt')+'.html', () => {
+            $.getScript( '/assets/js/'+$(e.target).attr('alt')+'.js');
+        });
+        e.preventDefault()
+        $(e.target).tab('show')
+    });
 
     if(window.location.hash) {
         $('#myTab a[href="'+window.location.hash+'"]').click()

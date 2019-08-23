@@ -78,6 +78,8 @@ function addPagination() {
 }
 
 function showProductList(page=1, sort='price', order='asc') {
+	$('#products').addClass('d-none')
+	loaderShow()
 	$.ajax({
 		type: 'GET',
 		url: window.location.origin+'/product/list',
@@ -86,6 +88,8 @@ function showProductList(page=1, sort='price', order='asc') {
 		success: (data) => {
 			$('#products tbody').html('')
 			if(parseInt(data.productsCount) > 0) {
+				loaderHide()
+				$('#products').removeClass('d-none')
 				$.each(data.products, (index, element) => {
 					let ind = ((page-1)*countPerPage) + index
 					addProductRow(element, ind)
@@ -101,6 +105,7 @@ function showProductList(page=1, sort='price', order='asc') {
 }
 
 $(document).ready(() => {
+	addLoader()
 	showProductList()
 	addPagination()
 
